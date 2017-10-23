@@ -31,7 +31,7 @@ expect eof
 echo "$SECURE_MYSQL"
 
 #Overwrite mysql config and restart mysql service
-wget http://grendelaget.com/terraform_azure/mysqld.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
+wget https://raw.githubusercontent.com/martinbjorgan/test/master/mysqld.cnf -O /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo service mysql restart
 
 mysql -u root -proot -e "CREATE DATABASE test;"

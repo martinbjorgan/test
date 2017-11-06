@@ -1,6 +1,6 @@
 <html>
    <body>
-      <form action = "demo.php" method = "POST">
+      <form action = "aws_demo.php" method = "POST">
          Name: <input type = "text" name = "name" />
         <input type = "submit" />
      </form>

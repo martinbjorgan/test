@@ -1,0 +1,241 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>AWS Terraform - Infrastructure provisioning</title>
+<style type="text/css" media="screen">
+  * {
+    margin: 0px 0px 0px 0px;
+    padding: 0px 0px 0px 0px;
+  }
+
+  body, html {
+    padding: 3px 3px 3px 3px;
+
+    background-color: #D8DBE2;
+
+    font-family: Verdana, sans-serif;
+    font-size: 11pt;
+    text-align: center;
+  }
+
+  div.main_page {
+    position: relative;
+    display: table;
+
+    width: 800px;
+
+    margin-bottom: 3px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 0px 0px 0px;
+
+    border-width: 2px;
+    border-color: #050000;
+    border-style: solid;
+
+    background-color: rgb(255, 255, 255);
+
+    text-align: center;
+  }
+
+  div.page_header {
+    height: 99px;
+    width: 100%;
+
+    background-color: rgb(250, 253, 253);
+  }
+
+  div.page_header span {
+    margin: 15px 0px 0px 50px;
+
+    font-size: 180%;
+    font-weight: bold;
+  }
+
+  div.page_header img {
+    margin: 3px 0px 0px 40px;
+
+    border: 0px 0px 0px;
+  }
+
+  div.table_of_contents {
+    clear: left;
+
+    min-width: 200px;
+
+    margin: 3px 3px 3px 3px;
+
+    background-color: #FFFFFF;
+
+    text-align: left;
+  }
+
+  div.table_of_contents_item {
+    clear: left;
+
+    width: 100%;
+
+    margin: 4px 0px 0px 0px;
+
+    background-color: #FFFFFF;
+
+    color: #000000;
+    text-align: left;
+  }
+
+  div.table_of_contents_item a {
+    margin: 6px 0px 0px 6px;
+  }
+
+  div.content_section {
+    margin: 3px 3px 3px 3px;
+
+    background-color: #FFFFFF;
+
+    text-align: left;
+  }
+
+  div.content_section_text {
+    padding: 4px 8px 4px 8px;
+
+    color: #000000;
+    font-size: 100%;
+  }
+
+  div.content_section_text pre {
+    margin: 8px 0px 8px 0px;
+    padding: 8px 8px 8px 8px;
+
+    border-width: 1px;
+    border-style: dotted;
+    border-color: #000000;
+
+    background-color: #F5F6F7;
+
+    font-style: italic;
+  }
+
+  div.content_section_text p {
+    margin-bottom: 6px;
+    width: 100%;
+  }
+
+  div.content_section_text ul, div.content_section_text li {
+    padding: 4px 8px 4px 16px;
+  }
+
+  div.section_header {
+    padding: 3px 6px 3px 6px;
+    width: auto;
+
+    background-color: #8E9CB2;
+
+    color: #FFFFFF;
+    font-weight: bold;
+    font-size: 112%;
+    text-align: center;
+  }
+
+  div.section_header_red {
+    background-color: rgb(5, 4, 85);
+    width: auto;
+  }
+
+  div.section_header_grey {
+    background-color: #9F9386;
+  }
+
+  .floating_element {
+    position: relative;
+    float: right;
+    width: 99%;
+  }
+
+  div.table_of_contents_item a,
+  div.content_section_text a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  div.table_of_contents_item a:link,
+  div.table_of_contents_item a:visited,
+  div.table_of_contents_item a:active {
+    color: #000000;
+  }
+
+  div.table_of_contents_item a:hover {
+    background-color: #000000;
+
+    color: #FFFFFF;
+  }
+
+  div.content_section_text a:link,
+  div.content_section_text a:visited,
+   div.content_section_text a:active {
+    background-color: #DCDFE6;
+
+    color: #000000;
+  }
+
+  div.content_section_text a:hover {
+    background-color: #000000;
+
+    color: #DCDFE6;
+  }
+
+  div.validator {
+  }
+    </style>
+</head>
+<body>
+<div class="main_page">
+  <img src="https://media.licdn.com/mpr/mpr/AAEAAQAAAAAAAAgOAAAAJDVkY2JjOWM3LTRlNmItNDllZC04ZTU3LWVjNmU2NjI3MWU5YQ.jpg" height="300" width="100%" alt="EVRY"/>
+<div class="page_header floating_element">
+<span class="floating_element">
+Provisioning infrastructure on to AWS using Terraform
+</span>
+</div>
+
+<div class="content_section floating_element">
+<div class="section_header section_header_red">
+<div id="about"></div>
+EVRY!
+</div>
+<div class="content_section_text">
+<p>
+The following resource have been provisioned using <tt><a href="https://terraform.io">Terraform</a></tt><br>
+<ul>
+  <li>1 VPC (Virtual Private Cloud)</li>
+  <li>1 Internet gateway</li>
+  <li>1 AWS route - Gives Internet access to the VPC</li>
+  <li>1 Subnet</li>
+  <li>1 ELB (Elastic Load Balander)</li>
+  <li>2 Security groups</li>
+    <ul>
+      <li>One for the ELB (Elastic Load Balancer) --> Tied to the Web server interface</li>
+      <li>One default --> Gives SSH,HTTP and MySQL access to the interfaces</li>
+    </ul>
+  <li>2 Ubuntu Linux instances</li>
+    <ul>
+      <li>1 Web server with Apache installed --> Via script</li>
+      <li>1 Database server with MySQL installed and database + tables created --> Via script</li>
+    </ul>
+</ul>
+</p>
+<p><br><br></p>
+<p>
+To verify the interaction between the web instance and the database instance check out the <a href="aws_demo.php">demo</a>
+</p>
+</div>
+
+</div>
+<div class="validator">
+<p>
+
+</p>
+</div>
+</body>
+</html>

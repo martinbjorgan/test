@@ -1,8 +1,8 @@
 #!/bin/bash
 apt-get update -y
-apt-get install -y expect
+apt-get install -y --allow-unauthenticated expect
 export DEBIAN_FRONTEND=noninteractive
-sudo -E apt-get -q -y install mysql-server
+sudo -E apt-get -q -y --allow-unauthenticated install mysql-server
 
 # Not required in actual script
 MYSQL_ROOT_PASSWORD=root

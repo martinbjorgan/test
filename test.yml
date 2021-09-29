@@ -1,0 +1,15 @@
+---
+- name: AD Join - Check if VM is already bound
+  command: >
+    realm list | grep domain-name
+  register: ad_joined
+  changed_when: false
+  ignore_errors: true
+
+- name: Creating a file with content
+  copy:
+    dest: "/home/mbjorgan/fil.txt"
+    content: |
+      We make file
+      here
+  when: ad_joined|failed
